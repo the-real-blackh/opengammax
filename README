@@ -1,0 +1,77 @@
+README 0.1
+0.1.1   1 - Added reading of live spectrum signal.
+        2 - Added support for sound card as source for spectrum signal.
+        3 - Added ability to write out NIST n42 files.
+        4 - Added periodic near real time display of spectrum from live signal.
+        5 - Added display of waveforms as seen by software, to allow easy adjustment.
+        6 - Ported to qwt 5.2.2.  Porting to qwt 6 is impractical.
+        7 - This version built with qwt 5.2.2 and Qt4.
+
+0.1	1 - Reorganized folders, not something to do lightly with source control!;
+	2 - Changed default labels to English;
+			
+
+0.04
+        1 - Added support for NIST N42 format files.
+        2 - Binary uploaded to www.sourceforge.net.
+        3 - Reorganized the folders to keep everything on
+            the same level.
+        4 - Added a N42 file from NIST to ExampleFiles.
+            Also created N42 files from IAEA files.
+
+0.03
+        1 - Name change from OpenGamma to OpenGammaX complete.
+        2 - Code builds and runs on Linux.  But not completely tested yet.
+        3 - No binaries available yet.
+        4 - Note that ../opengammamathfuncs makes a shared library.  This must be made and installed
+        separately from the main opengammax code.  Place it in a location which will be searched by default.
+        /usr/lib is a good choice.
+        5 - Example files have been added.  These came from IAEA sources and are useful for testing.
+
+0.02
+	Original source from OpenGamma project.
+
+NOTES:
+
+It is recommended that you use the Qt IDE.  However you can build without it.  The makefiles have been included for that reason.
+
+BUILD USING QT CREATOR:
+cd <mybuildfolder>
+tar xvf opengammax.tar.gz
+
+cd opengammax/opengammamathfuncs
+open opengammamathfuncs.pro with QT Creator
+From QT Creator select release build
+Run qmake from the build menu.
+RUn "rebuild project" from the build menu.
+exit QT Creator
+cd ../build
+open opengammax.pro with QT Creator
+From QT Creator select release build
+Run qmake from the build menu.
+RUn "rebuild project" from the build menu.
+exit QT Creator
+
+
+BUILD WITHOUT QT CREATOR:
+cd <mybuildfolder>
+tar xvf opengammax.tar.gz
+cd opengammax/opengammamathfuncs
+make
+make clean
+cd ../build
+make
+make clean
+
+Yes I know there are a million warnings.  I will attack that problem in time.
+
+RUNNING:
+Run with the following command line:
+LD_LIBRARY_PATH=../opengammamathfuncs/ ./opengammax
+
+A script called ogx.sh is provided in the build folder for this purpose.
+
+Libraries for qwt and qt must be in the library search path.
+
+
+

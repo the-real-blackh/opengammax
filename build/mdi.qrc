@@ -1,0 +1,10 @@
+<RCC>
+    <qresource prefix="/">
+        <file>../models/images/copy.png</file>
+        <file>../models/images/cut.png</file>
+        <file>../models/images/new.png</file>
+        <file>../models/images/open.png</file>
+        <file>../models/images/paste.png</file>
+        <file>../models/images/save.png</file>
+    </qresource>
+</RCC>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<N42InstrumentData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xmlns="http://physics.nist.gov/Divisions/Div846/Gp4/ANSIN4242/2005/ANSIN4242"
+    xsi:schemaLocation="http://physics.nist.gov/Divisions/Div846/Gp4/ANSIN4242/2005/ANSIN4242 http://physics.nist.gov/Divisions/Div846/Gp4/ANSIN4242/2005/ANSIN4242.xsd">
+
+    <!-- <N42InstrumentData> -->
+    <Measurement>
+        <InstrumentInformation>		<!-- Information about the instrument: all optional -->
+            <InstrumentType>PersonalRadiationDetector</InstrumentType>
+            <Manufacturer>PRDs R Us</Manufacturer>
+            <InstrumentModel>model #1</InstrumentModel>
+            <InstrumentID>serial #1</InstrumentID>
+        </InstrumentInformation>
+
+        <MeasuredItemInformation>	<!-- Information about where the measurement was done; also optional -->
+            <MeasurementLocation>
+                <Coordinates Time="2004-11-03T14:30:00-05:00">40.123 10.670</Coordinates>
+                <Coordinates Time="2004-11-03T14:40:00-05:00">40.124 10.669</Coordinates>
+                <Coordinates Time="2004-11-03T14:50:00-05:00">40.125 10.669</Coordinates>
+            </MeasurementLocation>
+        </MeasuredItemInformation>
+
+        <Spectrum>
+            <StartTime>2003-11-22T23:45:19</StartTime>
+            <RealTime>PT60S</RealTime>
+            <LiveTime>PT59.61S</LiveTime>
+            <Calibration Type="Energy" EnergyUnits="keV">
+                <Equation Model="Polynomial">
+                    <Coefficients>-21.84 12.105214 0.0065533164771609</Coefficients>
+                </Equation>
+            </Calibration>
+            <ChannelData>
+                0 0 0 22 421 847 1295 1982 2127 2222 2302 2276
+                2234 1921 1939 1715 1586 1469 1296 1178 1127 1047 928 760
+                679 641 542 529 443 423 397 393 322 272 294 227
+                216 224 208 191 189 163 167 173 150 137 136 129
+                150 142 160 159 140 103 90 82 83 85 67 76
+                73 84 63 74 70 69 76 61 49 61 63 65
+                58 62 48 75 56 61 46 56 43 37 55 47
+                50 40 38 54 43 41 45 51 32 35 29 33
+                40 44 33 35 20 26 27 17 19 20 16 19
+                18 19 18 20 17 45 55 70 62 59 32 30
+                21 23 10 9 5 13 11 11 6 7 7 9
+                11 4 8 8 14 14 11 9 13 5 5 6
+                10 9 3 4 3 7 5 5 4 5 3 6
+                5 0 5 6 3 1 4 4 3 10 11 4
+                1 4 2 11 9 6 3 5 5 1 4 2
+                6 6 2 3 0 2 2 2 2 0 1 3
+                1 1 2 3 2 4 5 2 6 4 1 0
+                3 1 2 1 1 0 1 0 0 2 0 1
+                0 0 0 1 0 0 0 0 0 0 0 2
+                0 0 0 1 0 1 0 0 2 1 0 0
+                0 0 1 3 0 0 0 1 0 1 0 0
+                0 0 0 0
+            </ChannelData>
+        </Spectrum>
+    </Measurement>
+</N42InstrumentData>

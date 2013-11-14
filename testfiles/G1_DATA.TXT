@@ -1,0 +1,109 @@
+
+The I.A.E.A. G1 Intercomparison Spectra
+
+This is a set of 9 Spectra distributed originally in August 1976 as an intercomparison exercise. (References 1 and 2) For some time the distribution of these spectra was limited by the medium on which they were available - punched tape, computer card or mainframe computer magnetic tape. They are now available on PC compatible 5.25" or 3.5" 720 kbyte floppy disk in four formats: 
+	· EG&G Instruments CHN format,
+	· Canberra Nuclear MCA format,
+	· Oxford Instruments SPM format,
+	· ASCII text list. 
+The spectra are in the public domain and can be obtained from GCS Services for the price of the floppy disk and postage. In the near future a program will also be available for purchase to allow automatic assessment of spectrum analysis results.
+Preparation of the Spectra
+The spectra were prepared by measuring pure radionuclides with high precision - just below 106 counts in the highest channel of each spectrum - using a detector of, what was at the time, 'average' performance. The detector was a 60 cc Ge(Li)detector of resolution 2.8 keV FWHM at 1332 keV and a peak-to-Compton ratio of 40:1. It was noted that peaks had a slight asymmetry. Spectra were recorded in 2000 channels with gain of about 0.5 keV/channel giving a range of about 1000 keV.The spectra were smoothed slightly to remove residual statistical uncertainty and then combined in various ways after shifting by whole numbers of channels and dividing each channel count by a known factor. The reason for shifting peaks was originally to provide peaks at positions unknown to the participants in the original intercomparison exercise. In order to allow programs to be tested in the presence of high and low peak backgrounds, about 10000 counts per channel were added to the bottom 1000 channels and about 200 counts per channel to the top 1000 channels. The 'join' between these two regions was adjusted to simulate a Compton edge. (It must be said that this is the one unsatisfactory aspect of these spectra in that this pseudo-Compton edge is much larger that encountered in real spectra and most analysis programs produce spurious peaks at this position.)
+
+The spectra as constructed at this point had peaks in known positions and of known ratios to reference peaks but were essentially 'noiseless'. The spectra were then subjected to a random number generator process to simulate the effects of counting statistics. Channel contents were adjusted in such a way that the variance of each channel content was equal to its content (i.e. every channel conforms to Poisson statistics). While this process will alter individual channels it will not alter the position of the peaks and should not alter the number of counts in the peaks.
+The Spectra
+G1100 - Reference Spectrum
+Contains 20 peaks to be regarded as independent nuclides. The spectrum is the sum of the complete spectra of all 20 nuclides over whole energy range.  Each peak contains near to 65,000 counts. 
+G1200 - Peak Search Test Spectrum
+Contains 22 peaks all shifted and attenuated relative to G1100. Many peaks are difficult to detect and measure. This spectrum also serves as a very good test of the ability of programs to measure the area of poorly defined peaks. Experience has shown that many programs can detect 17 peaks without spurious peaks appearing. The most peaks reported in the intercomparison was 19. The pseudo-Compton edge in this spectrum seems to cause problems with many programs and, as this is an unreal feature, any peaks reported in the range 1020 to 1030 keV can be ignored for the purposes of assessment.
+G1300 to G1305 - Consistency Test Spectra
+These 6 spectra each contain 22 peaks and are derived from the same prototype spectrum but subjected to the 'noise generation' process separately. 20 peaks are in same position as the G1100 reference peaks but attenuated. Another 2 peaks are attenuated and shifted. One notable feature of this set of spectra is that the peak at about channel 1011 is near to the pseudo-Compton edge and because of this the area measurement may be affected by the downward slope at the high energy side of the spectrum.
+G1400 - Deconvolution Test Spectrum
+This spectrum contains 9 well defined doublet peaks formed by shifting and attenuating peaks from G1100. Peak separations are 1, 3 and 6 channels and the peak ratios are 10:1, 3:1 and 1:1. This is a severe test of deconvolution algorithms. Completely automatic analysis will often not detect the 1 and 3 separation doublets. Interactive fitting programs should resolve all doublets and provide peak ratios close to the reference values.
+
+
+Objections to the use of these spectra
+
+It should be pointed out that there are objections to the use of these spectra in some quarters. These objections revolve around the fact that the spectra are of only 2000 channels, are 'computer generated' and are measured on an old detector. In rebuttal of these objections the following observations can be made:
+· The fact that only 2000 channels are available is irrelevant, the spectra can be regarded as a 2000 channel slice of a 4096 channel spectrum - or 8192 or 16384 channel spectra for that matter. What does matters is the number of channels within a peak. These spectra were recorded at about 0.5 keV/channel. The 'rule of thumb' is to allow 4 channels per FWHM. For a detector of about 2 keV this implies 0.5 keV/channel. It is not unreasonable, therefore, to expect software to cope with peak measurements under these conditions. The rather poor resolution of the detector used for the IAEA spectra should make analysis rather easier than it might be using a modern detector because of the larger number of channels within the peaks.
+· The argument that because the spectra have been 'computer generated' they are not relevant is not valid. The shapes of the peaks have not been altered by the mathematical manipulation. In fact, the correspondence of peak shape between standard and sample spectra may be better than in an actual measurement set where differences in count rate could, in principle at least, cause peak shapes to depend to a small extent on count rate.
+· The only real problem may lie in the fact that the peaks in the G1 set are slightly asymmetric.  In practice any detector system has the potential to produce spectra where the peaks are not ideal. For example, one would continue to use a detector after sustaining slight neutron damage, and one would hope that the analysis software would cope.  In fact, detailed examination shows that the peaks in the G1 spectra are not grossly different from a Gaussian.
+
+
+
+The G1 Reference Values
+
+The headings in the table have the following meaning:
+Reference: the approximate position of the relevant peak in the G1100 Reference Spectrum.
+Shift: the (whole) number of channels by which the reference peak is shifted in the test spectrum.
+Ratio: the ratio of the reference peak area in the G1100 spectrum to that in the sample spectrum.
+
+Spectrum G1200 (22 peaks) 
+Peak Search Test, Small Peak Area Accuracy Test
+	Reference	Shift	Ratio	Approx.Posn.
+130	-11	240.196	119
+207	+7	78.652	214
+306	-21	133.540	327
+361	-8	261.628	353
+563	-42	58.886	521
+655	-23	146.530	632
+818	-51	83.879	767
+818	+9	138.229	827
+863	+7	164.773	870
+924	+3	109.641	927
+1011	-44	142.857	967
+1095	+12	283.582	1107
+1196	-8	261.628	1188
+1300	+9	1014.493	1309
+1430	-32	963.855	1398
+1430	+37	1005.578	1467
+1522	-5	2618.182	1517
+1574	-8	261.628	1566
+1734	+9	1014.493	1743
+1823	+11	2222.222	1834
+1904	-5	2618.182	1899
+1947	+14	616.822	1961
+
+
+
+Spectrum G1300 to G1305 (6 replicate spectra, 22 peaks) 
+Consistency test.
+	Reference	Shift	Ratio	Approx.Posn.
+130	0	5.309	130
+207	0	24.138	207
+306	0	6.342	306
+361	0	23.316	361
+563	0	8.475	563
+655	0	34.337	655
+818	-43	8.477	775
+818	0	40.506	818
+863	0	7.592	863
+924	0	38.926	924
+1011	0	11.776	1011
+1095	0	211.111	1095
+1196	0	23.316	1196
+1300	0	271.552	1300
+1430	0	25.442	1430
+1430	+54	257.143	1484
+1522	0	38.919	1522
+1574	0	23.316	1574
+1734	0	271.552	1734
+1823	0	336.634	1823
+1904	0	38.919	1904
+1947	0	55.562	1947
+
+
+Spectrum G1300 to G1305  (9 doublet peaks)
+Deconvolution test.
+               --- Left ---                -- Right --            Ratio           Approx.Posn.
+	Reference	Shift	Ratio	Shift	Ratio	Sepn.	(Left/Rt)	(Left/Rt)
+1011	-25	35.241	-24	3.524	1	10	986/987
+1011	+21	9.162	+22	3.054	1	3	1032/1033	
+1095	-18	3.082	-17	3.082	1	1	1077/1078
+1095	+23	55.474	+26	5.547	3	10	1118/1121
+1430	-26	21.845	-23	7.282	3	3	1404/1407
+1430	+22	7.767	+25	7.767	3	1	1452/1455
+1823	-34	81.388	-28	8.139	6	10	1789/1795
+1823	+23	18.314	+29	6.104	6	3	1846/1852
+1947	-19	8.258	-13	8.258	6	1	1928/1934
+

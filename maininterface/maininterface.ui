@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainInterfaceClass</class>
+ <widget class="QMainWindow" name="MainInterfaceClass">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1200</width>
+    <height>700</height>
+   </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget"/>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1200</width>
+     <height>28</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuFile">
+    <property name="title">
+     <string>&amp;File</string>
+    </property>
+    <addaction name="actionReadSpectrumFile"/>
+    <addaction name="separator"/>
+    <addaction name="actionOpenLiveSignal"/>
+    <addaction name="actionReadSpectrum"/>
+    <addaction name="actionReadWaveforms"/>
+    <addaction name="actionRestart"/>
+    <addaction name="actionPause"/>
+    <addaction name="actionUnPause"/>
+    <addaction name="actionStop"/>
+    <addaction name="separator"/>
+    <addaction name="actionSaveSpectrum"/>
+    <addaction name="actionSavePlot"/>
+    <addaction name="separator"/>
+    <addaction name="actionExit"/>
+   </widget>
+   <widget class="QMenu" name="menuHelp">
+    <property name="title">
+     <string>&amp;Settings</string>
+    </property>
+    <addaction name="actionLanguage"/>
+    <addaction name="actionFileLocations"/>
+    <addaction name="actionSignalSettings"/>
+   </widget>
+   <widget class="QMenu" name="menu_Help">
+    <property name="title">
+     <string>&amp;Help</string>
+    </property>
+    <addaction name="actionAbout"/>
+   </widget>
+   <widget class="QMenu" name="menuAnalysis">
+    <property name="title">
+     <string>Analysis</string>
+    </property>
+    <addaction name="actionAnalyze"/>
+    <addaction name="separator"/>
+    <addaction name="actionSet_F100D3P"/>
+    <addaction name="actionSet_XTRA_F100"/>
+   </widget>
+   <addaction name="menuFile"/>
+   <addaction name="menuAnalysis"/>
+   <addaction name="menuHelp"/>
+   <addaction name="menu_Help"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <widget class="QToolBar" name="toolBar">
+   <property name="windowTitle">
+    <string>toolBar</string>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="actionReadSpectrumFile"/>
+   <addaction name="actionSaveSpectrum"/>
+   <addaction name="separator"/>
+  </widget>
+  <action name="actionNew">
+   <property name="icon">
+    <iconset>
+     <normaloff>:/images/new.png</normaloff>:/images/new.png</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;New</string>
+   </property>
+  </action>
+  <action name="actionCut">
+   <property name="icon">
+    <iconset>
+     <normaloff>:/images/cut.png</normaloff>:/images/cut.png</iconset>
+   </property>
+   <property name="text">
+    <string>Cu&amp;t</string>
+   </property>
+  </action>
+  <action name="actionClose">
+   <property name="text">
+    <string>Close</string>
+   </property>
+  </action>
+  <action name="actionLanguage">
+   <property name="text">
+    <string>&amp;Language</string>
+   </property>
+  </action>
+  <action name="actionReadSpectrumFile">
+   <property name="icon">
+    <iconset>
+     <normaloff>:/images/open.png</normaloff>:/images/open.png</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;Read Spectrum File</string>
+   </property>
+  </action>
+  <action name="actionSaveSpectrum">
+   <property name="icon">
+    <iconset>
+     <normaloff>:/images/save.png</normaloff>:/images/save.png</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;Save Spectrum</string>
+   </property>
+  </action>
+  <action name="actionSaveAs">
+   <property name="text">
+    <string>Save &amp;As...</string>
+   </property>
+  </action>
+  <action name="actionExit">
+   <property name="text">
+    <string>Exit</string>
+   </property>
+  </action>
+  <action name="action_Copy">
+   <property name="icon">
+    <iconset>
+     <normaloff>:/images/copy.png</normaloff>:/images/copy.png</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;Copy</string>
+   </property>
+  </action>
+  <action name="action_Paste">
+   <property name="icon">
+    <iconset>
+     <normaloff>:/images/paste.png</normaloff>:/images/paste.png</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;Paste</string>
+   </property>
+  </action>
+  <action name="actionAnalyze">
+   <property name="text">
+    <string>Analy&amp;ze</string>
+   </property>
+  </action>
+  <action name="actionApply_Energy_Calibration">
+   <property name="text">
+    <string>Apply &amp;Energy Calibration</string>
+   </property>
+  </action>
+  <action name="actionClose_All">
+   <property name="text">
+    <string>Close All</string>
+   </property>
+  </action>
+  <action name="actionTile">
+   <property name="text">
+    <string>Tile</string>
+   </property>
+  </action>
+  <action name="actionCascade">
+   <property name="text">
+    <string>Cascade</string>
+   </property>
+  </action>
+  <action name="actionNext">
+   <property name="text">
+    <string>Next</string>
+   </property>
+  </action>
+  <action name="actionPrevious">
+   <property name="text">
+    <string>Previous</string>
+   </property>
+  </action>
+  <action name="actionFileLocations">
+   <property name="text">
+    <string>&amp;File locations</string>
+   </property>
+  </action>
+  <action name="actionAbout">
+   <property name="text">
+    <string>&amp;about</string>
+   </property>
+  </action>
+  <action name="actionGet_InterWinner_results">
+   <property name="text">
+    <string>Get InterWinner results</string>
+   </property>
+  </action>
+  <action name="actionGet_OpenGamma_results">
+   <property name="text">
+    <string>Get OpenGamma results</string>
+   </property>
+  </action>
+  <action name="actionSI_049_2009">
+   <property name="text">
+    <string>SI-049/2009</string>
+   </property>
+  </action>
+  <action name="actionSet_F100D3P">
+   <property name="text">
+    <string>set F100D3P</string>
+   </property>
+  </action>
+  <action name="actionSet_XTRA_F100">
+   <property name="text">
+    <string>set XTRA_F100</string>
+   </property>
+  </action>
+  <action name="actionSavePlot">
+   <property name="text">
+    <string>Save &amp;Plot</string>
+   </property>
+  </action>
+  <action name="actionReadSpectrum">
+   <property name="text">
+    <string>Display Spectrum</string>
+   </property>
+  </action>
+  <action name="actionSaveSpectrumData">
+   <property name="text">
+    <string>Save Spectrum to File</string>
+   </property>
+  </action>
+  <action name="actionStop">
+   <property name="text">
+    <string>Stop</string>
+   </property>
+  </action>
+  <action name="actionRestart">
+   <property name="text">
+    <string>Restart</string>
+   </property>
+  </action>
+  <action name="actionSignalSettings">
+   <property name="text">
+    <string>Signal Settings</string>
+   </property>
+  </action>
+  <action name="actionSaveAnalysis">
+   <property name="text">
+    <string>Save Analysis</string>
+   </property>
+  </action>
+  <action name="actionReadWaveform">
+   <property name="text">
+    <string>View Waveform</string>
+   </property>
+  </action>
+  <action name="actionPause">
+   <property name="text">
+    <string>Pause</string>
+   </property>
+  </action>
+  <action name="actionUnPause">
+   <property name="text">
+    <string>Continue</string>
+   </property>
+  </action>
+  <action name="actionOpenLiveSignal">
+   <property name="text">
+    <string>Open Spectrum Signal</string>
+   </property>
+  </action>
+  <action name="actionReadWaveforms">
+   <property name="text">
+    <string>Display Waveforms</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

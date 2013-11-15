@@ -66,7 +66,7 @@ MainInterface::MainInterface(QWidget *parent)
 
 MainInterface::~MainInterface()
 {
-    delete ui;
+    //delete ui;
 }
 
 QString MainInterface::getCurrentLang()
@@ -125,11 +125,13 @@ void MainInterface::on_actionOpenLiveSignal_triggered(){
     QString path("/dev/snd/");
     QString fileName = QFileDialog::getOpenFileName( this,
          tr("Open a live data stream."), path, "(hwC*D*)");
+#ifdef HAVE_ALSA
     rtn = io.openLiveSignal( fileName, sam);
-    if(rtn = FALSE){
+    if(rtn = false){
         statusBar()->showMessage(tr("Unable to open live signal"), 0);
         return;
     }
+#endif
     sam.fileName = fileName;
     sam.acqDateTime.currentDateTime();
     child = createMdiChild( fileName, sam, io );
@@ -143,21 +145,26 @@ void MainInterface::on_actionOpenLiveSignal_triggered(){
 
 void MainInterface::on_actionReadSpectrum_triggered()
 {
+#ifdef HAVE_ALSA
     io.readSpectrum(sam);
+#endif
 }
 
 
 void MainInterface::on_actionReadWaveforms_triggered()
 {
+#ifdef HAVE_ALSA
     io.readWaveforms(sam);
+#endif
 }
 
 void MainInterface::reRead()  // used for display update only
 {
+    /*
     bool rtn;
 
     rtn = io.reRead(sam);
-    if(rtn == FALSE){
+    if(rtn == false){
         statusBar()->showMessage(tr("Unable to re-read source of live data"), 0);
        return;
     }
@@ -166,34 +173,48 @@ void MainInterface::reRead()  // used for display update only
     //statusBar()->showMessage(tr("Live Data Updated"), 2000);
     child->showMaximized();
     QApplication::restoreOverrideCursor();
+    */
 }
 
 
 void MainInterface::on_actionUnPause_triggered()
 {
-
-    timerDisplay->start(TIMER_PERIOD);
-    io.startDataCapture();
-    return;
+    if (timerDisplay != NULL) {
+        timerDisplay->start(TIMER_PERIOD);
+#ifdef HAVE_ALSA
+        io.startDataCapture();
+#endif
+    }
 }
 
 void MainInterface::on_actionStop_triggered()
 {
-    timerDisplay->stop();
-    io.stopDataCapture();
+    if (timerDisplay != NULL) {
+        timerDisplay->stop();
+#ifdef HAVE_ALSA
+        io.stopDataCapture();
+#endif
+    }
 }
 
 void MainInterface::on_actionPause_triggered()
 {
-    timerDisplay->stop();
-    io.stopDataCapture();
+    if (timerDisplay != NULL) {
+        timerDisplay->stop();
+#ifdef HAVE_ALSA
+        io.stopDataCapture();
+#endif
+    }
 }
 
 void MainInterface::on_actionRestart_triggered()
 {
-    timerDisplay->start(TIMER_PERIOD);
-    io.startDataCapture();
-    return;
+    if (timerDisplay != NULL) {
+        timerDisplay->start(TIMER_PERIOD);
+#ifdef HAVE_ALSA
+        io.startDataCapture();
+#endif
+    }
 }
 
 void MainInterface::on_actionSavePlot_triggered()

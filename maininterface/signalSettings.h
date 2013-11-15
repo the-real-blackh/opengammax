@@ -22,7 +22,7 @@
 
 #include "ui_signalSettings.h"
 
-static bool curInvert = TRUE;
+static bool curInvert = true;
 static int curThreshold = 200;      // out of ADC range of 16384
 
 class SignalSettingsDlg : public QDialog

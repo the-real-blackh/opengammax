@@ -236,9 +236,9 @@ void SpectrumForm::setAnalysisLib( const QString &baseName )
 bool SpectrumForm::saveSpectrumSimple(const QString &fileName, Sample & samp){
     SpectrumIO *sp = new SpectrumIO();
     if(sp->saveSpectrumSimple( fileName, samp)){
-        return TRUE;
+        return true;
     } else {
-        return FALSE;
+        return false;
     }
 }
 

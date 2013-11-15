@@ -28,7 +28,9 @@
 #include <QProgressDialog>
 #include "counts.h"
 #include "spectrio.h"
+#ifdef HAVE_ALSA
 #include "alsaStream.h"
+#endif
 #include "sample.h"
 
 
@@ -63,6 +65,7 @@ bool SpectrumIO::readSpectrumFile( const QString& fileName, Sample& sp )
     return rslt;     // a copy is kept in spectrumTbl
 }
 
+#ifdef HAVE_ALSA
 bool SpectrumIO::setSettings(bool invert, int threshold){
     if(liveSource == ALSA){
          AlsaStream *alsa = new AlsaStream();
@@ -71,7 +74,9 @@ bool SpectrumIO::setSettings(bool invert, int threshold){
          return FALSE;
      }
 }
+#endif
 
+#ifdef HAVE_ALSA
 // counts are read into the SpectrumIO object by methods below
 bool SpectrumIO::openLiveSignal( QString & fileName, Sample & samp )
 {
@@ -91,7 +96,9 @@ bool SpectrumIO::openLiveSignal( QString & fileName, Sample & samp )
     }
     return FALSE;
 }
+#endif
 
+#ifdef HAVE_ALSA
 bool SpectrumIO::readSpectrum(Sample & samp){
    if(liveSource == ALSA){
         AlsaStream *alsa = new AlsaStream();
@@ -101,7 +108,9 @@ bool SpectrumIO::readSpectrum(Sample & samp){
         return FALSE;
     }
 }
+#endif
 
+#ifdef HAVE_ALSA
 // selection of waveform or spectrum is in the lowest level code
 bool SpectrumIO::readWaveforms(Sample & samp){
      if(liveSource == ALSA){
@@ -112,7 +121,9 @@ bool SpectrumIO::readWaveforms(Sample & samp){
          return FALSE;
      }
 }
+#endif
 
+#ifdef HAVE_ALSA
 bool SpectrumIO::reRead(Sample & samp)          // used to update display
 {
      if(liveSource == ALSA){
@@ -123,9 +134,9 @@ bool SpectrumIO::reRead(Sample & samp)          // used to update display
          return FALSE;
      }
 }
+#endif
 
-
-
+#ifdef HAVE_ALSA
 bool SpectrumIO::startDataCapture()
 {
      if(liveSource == ALSA){
@@ -136,8 +147,9 @@ bool SpectrumIO::startDataCapture()
          return FALSE;
      }
 }
+#endif
 
-
+#ifdef HAVE_ALSA
 bool SpectrumIO::stopDataCapture()
 {
      if(liveSource == ALSA){
@@ -148,8 +160,9 @@ bool SpectrumIO::stopDataCapture()
          return FALSE;
      }
 }
+#endif
 
-
+#ifdef HAVE_ALSA
 bool SpectrumIO::clear()
 {
      if(liveSource == ALSA){
@@ -160,7 +173,7 @@ bool SpectrumIO::clear()
          return FALSE;
      }
 }
-
+#endif
 
 // Save out spectrum and associated data to a file.  Original source does not matter.
 

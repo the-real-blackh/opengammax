@@ -19,6 +19,7 @@
  ***************************************************************************/
 
 #include <QtGui>
+#include <QFileDialog>
 
 #include "directories.h"
 

@@ -26,7 +26,7 @@
      <x>0</x>
      <y>0</y>
      <width>1200</width>
-     <height>28</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -93,8 +93,8 @@
   </widget>
   <action name="actionNew">
    <property name="icon">
-    <iconset>
-     <normaloff>:/images/new.png</normaloff>:/images/new.png</iconset>
+    <iconset resource="../build/mdi.qrc">
+     <normaloff>:/models/images/new.png</normaloff>:/models/images/new.png</iconset>
    </property>
    <property name="text">
     <string>&amp;New</string>
@@ -102,8 +102,8 @@
   </action>
   <action name="actionCut">
    <property name="icon">
-    <iconset>
-     <normaloff>:/images/cut.png</normaloff>:/images/cut.png</iconset>
+    <iconset resource="../build/mdi.qrc">
+     <normaloff>:/models/images/cut.png</normaloff>:/models/images/cut.png</iconset>
    </property>
    <property name="text">
     <string>Cu&amp;t</string>
@@ -121,8 +121,8 @@
   </action>
   <action name="actionReadSpectrumFile">
    <property name="icon">
-    <iconset>
-     <normaloff>:/images/open.png</normaloff>:/images/open.png</iconset>
+    <iconset resource="../build/mdi.qrc">
+     <normaloff>:/models/images/open.png</normaloff>:/models/images/open.png</iconset>
    </property>
    <property name="text">
     <string>&amp;Read Spectrum File</string>
@@ -130,8 +130,8 @@
   </action>
   <action name="actionSaveSpectrum">
    <property name="icon">
-    <iconset>
-     <normaloff>:/images/save.png</normaloff>:/images/save.png</iconset>
+    <iconset resource="../build/mdi.qrc">
+     <normaloff>:/models/images/save.png</normaloff>:/models/images/save.png</iconset>
    </property>
    <property name="text">
     <string>&amp;Save Spectrum</string>
@@ -149,8 +149,8 @@
   </action>
   <action name="action_Copy">
    <property name="icon">
-    <iconset>
-     <normaloff>:/images/copy.png</normaloff>:/images/copy.png</iconset>
+    <iconset resource="../build/mdi.qrc">
+     <normaloff>:/models/images/copy.png</normaloff>:/models/images/copy.png</iconset>
    </property>
    <property name="text">
     <string>&amp;Copy</string>
@@ -158,8 +158,8 @@
   </action>
   <action name="action_Paste">
    <property name="icon">
-    <iconset>
-     <normaloff>:/images/paste.png</normaloff>:/images/paste.png</iconset>
+    <iconset resource="../build/mdi.qrc">
+     <normaloff>:/models/images/paste.png</normaloff>:/models/images/paste.png</iconset>
    </property>
    <property name="text">
     <string>&amp;Paste</string>
@@ -296,6 +296,8 @@
    </property>
   </action>
  </widget>
- <resources/>
+ <resources>
+  <include location="../build/mdi.qrc"/>
+ </resources>
  <connections/>
 </ui>

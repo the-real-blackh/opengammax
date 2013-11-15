@@ -31,7 +31,7 @@ void EnergyPicker::setPickerEnCalDefault()
     enCal->setDefaultCalibration();
 }
 
-QwtText EnergyPicker::trackerText( const QwtDoublePoint &pos ) const
+QwtText EnergyPicker::trackerText( const QPointF &pos ) const
 {
     QString ret;
     if ( enCal->isCalib() )

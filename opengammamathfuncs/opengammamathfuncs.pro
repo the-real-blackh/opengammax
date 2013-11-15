@@ -39,12 +39,8 @@ HEADERS += opengammamathfuncs.h \
     opengammamathfuncs_global.h \
     doblst.h
 win32:win32-g++ { 
-    LIBS += -L/Progra~1/GnuWin32/lib \
-        -L/Arquiv~1/GnuWin32/lib \
-        -L/Progra~2/GnuWin32/lib
-    INCLUDEPATH += C:/Progra~1/GnuWin32/include
-    INCLUDEPATH += C:/Arquiv~1/GnuWin32/include
-    INCLUDEPATH += C:/Progra~2/GnuWin32/include
+    LIBS += -L../../gsl-1.16/.libs -L../../gsl-1.16/cblas/.libs
+    INCLUDEPATH += ../../gsl-1.16
 }
 LIBS += -lgsl \
     -lgslcblas

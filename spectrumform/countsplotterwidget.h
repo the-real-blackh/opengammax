@@ -56,7 +56,7 @@ private slots:
     void changed2( int state );
     // void changed4( int state );
     void changedErrBars( int state );
-    void selectedPoint(const QwtDoublePoint &);
+    void selectedPoint(const QPointF &);
 
 signals:
     void askForNewSearch();

@@ -20,6 +20,7 @@
 
 #include <QSvgGenerator>
 #include <gsl/gsl_math.h>
+#include <qwt_plot_renderer.h>
 
 #include "plotterwidget.h"
 
@@ -95,7 +96,7 @@ void PlotterWidget::hidePlotGrpbx()
 void PlotterWidget::logSelected()
 {
     setYLog( true );
-    ui.plot->setAxisScaleEngine( QwtPlot::yLeft, new QwtLog10ScaleEngine );
+    ui.plot->setAxisScaleEngine( QwtPlot::yLeft, new QwtLogScaleEngine );
 }
 
 void PlotterWidget::linSelected()
@@ -106,8 +107,8 @@ void PlotterWidget::linSelected()
 
 void PlotterWidget::panLeft()
 {
-    double xLo = ui.plot->axisScaleDiv( QwtPlot::xBottom )->lowerBound();
-    double xUp = ui.plot->axisScaleDiv( QwtPlot::xBottom )->upperBound();
+    double xLo = ui.plot->axisScaleDiv( QwtPlot::xBottom ).lowerBound();
+    double xUp = ui.plot->axisScaleDiv( QwtPlot::xBottom ).upperBound();
     double dx = 0.1 * (xUp - xLo) ;
     if ( xLo >= m_xLoLimit )
         ui.plot->setAxisScale( QwtPlot::xBottom, xLo - dx, xUp - dx);
@@ -115,16 +116,16 @@ void PlotterWidget::panLeft()
 
 void PlotterWidget::panRight()
 {
-    double xLo = ui.plot->axisScaleDiv( QwtPlot::xBottom )->lowerBound();
-    double xUp = ui.plot->axisScaleDiv( QwtPlot::xBottom )->upperBound();
+    double xLo = ui.plot->axisScaleDiv( QwtPlot::xBottom ).lowerBound();
+    double xUp = ui.plot->axisScaleDiv( QwtPlot::xBottom ).upperBound();
     double dx = 0.1 * (xUp - xLo) ;
     ui.plot->setAxisScale( QwtPlot::xBottom, xLo + dx, xUp + dx);
 }
 
 void PlotterWidget::panUp()
 {
-    double yLo = ui.plot->axisScaleDiv( QwtPlot::yLeft )->lowerBound();
-    double yUp = ui.plot->axisScaleDiv( QwtPlot::yLeft )->upperBound();
+    double yLo = ui.plot->axisScaleDiv( QwtPlot::yLeft ).lowerBound();
+    double yUp = ui.plot->axisScaleDiv( QwtPlot::yLeft ).upperBound();
     double dy = 0.1 * (yUp - yLo) ;
     if ( isYLog() )
         ui.plot->setAxisScale( QwtPlot::yLeft, 10.0 * yLo, 10.0 * yUp );
@@ -134,8 +135,8 @@ void PlotterWidget::panUp()
 
 void PlotterWidget::panDown()
 {
-    double yLo = ui.plot->axisScaleDiv( QwtPlot::yLeft )->lowerBound();
-    double yUp = ui.plot->axisScaleDiv( QwtPlot::yLeft )->upperBound();
+    double yLo = ui.plot->axisScaleDiv( QwtPlot::yLeft ).lowerBound();
+    double yUp = ui.plot->axisScaleDiv( QwtPlot::yLeft ).upperBound();
     double dy = 0.1 * (yUp - yLo) ;
     if ( isYLog() )
         ui.plot->setAxisScale( QwtPlot::yLeft, 0.1 * yLo, 0.1 * yUp );
@@ -146,8 +147,8 @@ void PlotterWidget::panDown()
 
 void PlotterWidget::zoomInX()
 {
-    double xLo = ui.plot->axisScaleDiv( QwtPlot::xBottom )->lowerBound();
-    double xUp = ui.plot->axisScaleDiv( QwtPlot::xBottom )->upperBound();
+    double xLo = ui.plot->axisScaleDiv( QwtPlot::xBottom ).lowerBound();
+    double xUp = ui.plot->axisScaleDiv( QwtPlot::xBottom ).upperBound();
     double dx = 0.1 * (xUp - xLo) ;
     if ( dx >= 4.0 )
         ui.plot->setAxisScale( QwtPlot::xBottom, xLo + dx, xUp - dx);
@@ -155,24 +156,24 @@ void PlotterWidget::zoomInX()
 
 void PlotterWidget::zoomOutX()
 {
-    double xLo = ui.plot->axisScaleDiv( QwtPlot::xBottom )->lowerBound();
-    double xUp = ui.plot->axisScaleDiv( QwtPlot::xBottom )->upperBound();
+    double xLo = ui.plot->axisScaleDiv( QwtPlot::xBottom ).lowerBound();
+    double xUp = ui.plot->axisScaleDiv( QwtPlot::xBottom ).upperBound();
     double dx = 0.1 * (xUp - xLo) ;
     ui.plot->setAxisScale( QwtPlot::xBottom, xLo - dx, xUp + dx);
 }
 
 void PlotterWidget::zoomInY()
 {
-    double yLo = ui.plot->axisScaleDiv( QwtPlot::yLeft )->lowerBound();
-    double yUp = ui.plot->axisScaleDiv( QwtPlot::yLeft )->upperBound();
+    double yLo = ui.plot->axisScaleDiv( QwtPlot::yLeft ).lowerBound();
+    double yUp = ui.plot->axisScaleDiv( QwtPlot::yLeft ).upperBound();
     double dy = 0.1 * (yUp - yLo) ;
     ui.plot->setAxisScale( QwtPlot::yLeft, yLo, yUp - dy );
 }
 
 void PlotterWidget::zoomOutY()
 {
-    double yLo = ui.plot->axisScaleDiv( QwtPlot::yLeft )->lowerBound();
-    double yUp = ui.plot->axisScaleDiv( QwtPlot::yLeft )->upperBound();
+    double yLo = ui.plot->axisScaleDiv( QwtPlot::yLeft ).lowerBound();
+    double yUp = ui.plot->axisScaleDiv( QwtPlot::yLeft ).upperBound();
     double dy = 0.1 * (yUp - yLo) ;
     ui.plot->setAxisScale( QwtPlot::yLeft, yLo, yUp + dy );
 }
@@ -269,7 +270,7 @@ void PlotterWidget::plotFunctionRange( QwtPlotCurve *curve, QColor color, Functi
     curve->setRenderHint(QwtPlotItem::RenderAntialiased);
     curve->setPen( QPen( color ) );
     curve->attach( ui.plot );
-    curve->setData(x, y, nPt);
+    curve->setSamples(x, y, nPt);
 }
 
 void PlotterWidget::finalizePlot()
@@ -283,7 +284,8 @@ void PlotterWidget::saveSvg( const QString& flnm )
     QSvgGenerator generator;
     generator.setFileName( flnm );
     generator.setSize(QSize(800, 600));
-    ui.plot->print(generator);
+    QwtPlotRenderer renderer;
+    renderer.renderTo(ui.plot, generator);
 }
 
 // AQUI 2010-05-28

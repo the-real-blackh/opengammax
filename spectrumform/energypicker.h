@@ -23,22 +23,22 @@
 
 #include <qwt_plot_picker.h>
 #include <qwt_plot.h>
+#include <qwt_plot_canvas.h>
 
 #include "genericcalibration.h"
 
 class EnergyPicker : public QwtPlotPicker
 {
 public:
-    EnergyPicker( Doblst enParms, QwtPlotCanvas *can ) :
+    EnergyPicker( Doblst enParms, QWidget *can ) :
         QwtPlotPicker (QwtPlot::xBottom, QwtPlot::yLeft,
-        QwtPicker::PointSelection | QwtPicker::DragSelection,
         QwtPlotPicker::CrossRubberBand, QwtPicker::AlwaysOn, can )
             { enCal = new GenericCalibration( enParms, FunctionsDefinitions::poly, this );
     }
     void setPickerEnCal( Doblst a );
     void setPickerEnCalDefault();
     // reimplemented from QwtPlotPicker:
-    QwtText trackerText( const QwtDoublePoint &pos ) const;
+    QwtText trackerText( const QPointF &pos ) const;
 private:
     GenericCalibration *enCal;
 };

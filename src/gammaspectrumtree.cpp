@@ -19,6 +19,7 @@
  ***************************************************************************/
 
 #include <QtGui>
+#include <QMessageBox>
 
 #include "gammaspectrumtree.h"
 

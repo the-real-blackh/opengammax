@@ -26,7 +26,7 @@ CountsPlotterWidget::CountsPlotterWidget( QString &title,
                                          Doblst enParms,
                                          int style,
                                          QWidget *parent )
-  : PlotterWidget( title, FALSE, 0.0, 1.0, 0, parent )
+  : PlotterWidget( title, false, 0.0, 1.0, 0, parent )
 {
     QCheckBox *ckbPlotCounts = new QCheckBox("Counts");
     QCheckBox *ckbPlotBaseLine = new QCheckBox("Base line");
@@ -57,8 +57,8 @@ CountsPlotterWidget::CountsPlotterWidget( QString &title,
     //connect( butt1, SIGNAL(clicked()), this, SIGNAL( startLiveSpectrum() ) );
     //connect( butt2, SIGNAL(clicked()), this, SIGNAL( stopLiveSpectrum() ) );
 
-    connect(d_picker, SIGNAL(selected(const QwtDoublePoint &)),
-            this, SLOT(selectedPoint(const QwtDoublePoint &)));
+    connect(d_picker, SIGNAL(selected(const QPointF &)),
+            this, SLOT(selectedPoint(const QPointF &)));
 }
 
 void CountsPlotterWidget::setPickerEnCal( Doblst a )
@@ -101,7 +101,7 @@ void CountsPlotterWidget::fillGammasHintsMdl( QStandardItemModel *from )
     gammasHintsMdl->sort( 0 );
 }
 
-void CountsPlotterWidget::selectedPoint( const QwtDoublePoint & )
+void CountsPlotterWidget::selectedPoint( const QPointF & )
 {
     EnergyPointEntry *epe = new EnergyPointEntry( gammasHintsMdl, this );
     int indGamma;

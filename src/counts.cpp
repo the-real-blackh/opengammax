@@ -40,7 +40,7 @@ bool Counts::clear( )
 {
     cntList.clear();
     sigmaCounts.clear();
-    return TRUE;
+    return true;
 }
 
 void Counts::updateCounts( Intlst & ilist )

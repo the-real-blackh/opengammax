@@ -35,6 +35,6 @@ bool SpectrumIO::readCAM(const QString &fileName, Sample & sp)
     if (!file.open(QFile::ReadOnly)) return NULL;
     inTst = new QTextStream(&file);
     // AQUI 2009-11-14 implementar
-    return TRUE;
+    return true;
 }
 

@@ -42,7 +42,9 @@ void SignalSettingsDlg::on_okButtonSignal_clicked()
     if(ui.noInvertSignal_rbt->isChecked())
        curInvert = FALSE;
     curThreshold = ui.threshold_sb->value();
-    SpectrumIO *specio = new SpectrumIO;
-    specio->setSettings( curInvert,  curThreshold);
+#ifdef HAVE_ALSA
+    SpectrumIO specio;
+    specio.setSettings( curInvert,  curThreshold);
+#endif
     this->done(0);
 }    

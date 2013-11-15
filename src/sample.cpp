@@ -41,5 +41,5 @@ bool Sample::clear(){
     liveTime = 0.0;
     acqDateTime.currentDateTime();
     sampleDateTime.currentDateTime();
-    return TRUE;
+    return true;
 }

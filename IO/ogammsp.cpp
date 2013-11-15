@@ -60,7 +60,7 @@ bool SpectrumIO::readOgammsp(const QString &fileName, Sample & samp)
     for (int i=0; i < ioEnxchan.count(); i++) ioEnParms   << ioEnxchan[i].toDouble();
     for (int i=0; i < ioFwhmxch.count(); i++) ioFwhmParms << ioFwhmxch[i].toDouble();
 #endif
-    return TRUE;
+    return true;
 }
 
 /*

@@ -27,14 +27,12 @@
 #include <qpen.h>
 #include <qwt_plot_layout.h>
 #include <qwt_legend.h>
-#include <qwt_legend_item.h>
 #include <qwt_plot_grid.h>
 
 using namespace std;
 
 #include "maininterface.h"
 #include "spectrio.h"
-#include "alsaStream.h"
 #include "sample.h"
 
 
@@ -50,7 +48,7 @@ bool SpectrumIO::saveNISTn42Spectrum( const QString &fileName, Sample & samp){
     Intlst *spect = counts->getAllCounts();
     QFile nuFile(fileName);
     if (!nuFile.open(QFile::WriteOnly | QFile::Truncate))
-        return FALSE;
+        return false;
     QTextStream n42Image(&nuFile);
     QString str;
 
@@ -104,7 +102,7 @@ bool SpectrumIO::saveNISTn42Spectrum( const QString &fileName, Sample & samp){
     n42Image << "    </Spectrum>" << endl;
     n42Image << "</Measurement>" << endl;
     n42Image.flush();
-    return TRUE;
+    return true;
 }
 
 
@@ -227,7 +225,7 @@ bool SpectrumIO::parseN42(const QString &in, QStringList &tokens)
             break;
         }
     }
-    return TRUE;
+    return true;
 }
 
 
@@ -243,11 +241,11 @@ bool SpectrumIO::readN42(const QString &fileName, Sample& samp)
     int n, max;
 
     QFile file(fileName);
-    if (!file.open(QFile::ReadOnly | QFile::Text)) return FALSE;
+    if (!file.open(QFile::ReadOnly | QFile::Text)) return false;
     QTextStream in(&file);
     buffer = in.readAll();     // get entire file into buffer
     if(!(parseN42(buffer, tokens))){
-        return FALSE;
+        return false;
     }
     // Process tokens
     Intlst * ilist = new Intlst();
@@ -321,7 +319,7 @@ bool SpectrumIO::readN42(const QString &fileName, Sample& samp)
                                 \
                                 QByteArray textline;
                                 const char *text;
-                                textline = token.toAscii();
+                                textline = token.toLatin1();
                                 text = textline.constData();
                                 n = sscanf(text, "PT%fS", &samp.realTime);
                             }while((token != "</RealTime>") && !(tokens.isEmpty()));
@@ -331,7 +329,7 @@ bool SpectrumIO::readN42(const QString &fileName, Sample& samp)
                                 token = tokens.takeFirst();
                                 QByteArray textline;
                                 const char *text;
-                                textline = token.toAscii();
+                                textline = token.toLatin1();
                                 text = textline.constData();
                                 n = sscanf(text, "PT%fS", &samp.liveTime);
                             }while((token != "</LiveTime>") && !(tokens.isEmpty()));
@@ -364,7 +362,7 @@ bool SpectrumIO::readN42(const QString &fileName, Sample& samp)
         }
     } while(!(tokens.isEmpty()));
     cp->updateCounts(*ilist);
-    return TRUE;
+    return true;
 }
 
 

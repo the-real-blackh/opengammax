@@ -21,7 +21,7 @@
 #ifndef SPECTRUMFORM_H
 #define SPECTRUMFORM_H
 
-#include <QtGui/QDialog>
+#include <QDialog>
 #include <QDateTime>
 #include <QDomDocument>
 #include <QStandardItemModel>

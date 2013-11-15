@@ -19,10 +19,17 @@
 # -------------------------------------------------
 # Qwt config
 win32 {
-    INCLUDEPATH += c:/qwt-5.2.1/src
-    DEFINES += QWT_DLL
-    LIBS += c:/qwt-5.2.1/lib/qwt5.dll
-    LIBS += c:/qwt-5.2.1/lib/qwtd5.dll
+#    INCLUDEPATH += c:/qwt-5.2.1/src
+#    DEFINES += QWT_DLL
+#    LIBS += c:/qwt-5.2.1/lib/qwt5.dll
+#    LIBS += c:/qwt-5.2.1/lib/qwtd5.dll
+  QWT_LOCATION = c:\qwt-6.1.0
+
+  INCLUDEPATH +=  $${QWT_LOCATION}/include/
+  LIBS =          -L$${QWT_LOCATION}/lib -lqwt
+  
+  #INCLUDEPATH += c:\qt\qt5.1.1\5.1.1\mingw48_32\include
+  CONFIG += console
 }
 unix {
     INCLUDEPATH += /usr/include/qt4/qt \
@@ -30,7 +37,6 @@ unix {
     LIBS += -L/usr/lib -L/usr/local/qwt-5.2.2/lib \
         -lqwt -lasound
 }
-
 #unix {
 #    INCLUDEPATH += /usr/include/qwt5
 #    LIBS += -L/usr/lib \
@@ -40,13 +46,10 @@ unix {
 
 # Qwt config end
 # GnuWin32 / GSL config:
+GSL_ROOT=../../gsl-1.16/
 win32 {
-    LIBS += -L/Progra~1/GnuWin32/lib \
-        -L/Arquiv~1/GnuWin32/lib \
-        -L/Progra~2/GnuWin32/lib
-    INCLUDEPATH += C:/Progra~1/GnuWin32/include
-    INCLUDEPATH += C:/Arquiv~1/GnuWin32/include
-    INCLUDEPATH += C:/Progra~2/GnuWin32/include
+    LIBS += -L$${GSL_ROOT}/.libs -L$${GSL_ROOT}/cblas/.libs
+    INCLUDEPATH += $${GSL_ROOT}
 }
 LIBS += -lgsl \
     -lgslcblas
@@ -54,7 +57,8 @@ LIBS += -lgsl \
 # End of GNU GSL entries
 # Internal library
 INCLUDEPATH += ../opengammamathfuncs
-win32:LIBS += ../opengammamathfuncs/release/opengammamathfuncs.dll
+win32:LIBS += -L../build-opengammamathfuncs-Desktop_Qt_5_1_1_MinGW_32bit-Release/release \
+    -lopengammamathfuncs -lopengammamathfuncs -lqwt
 unix:LIBS += -L./../opengammamathfuncs -L/usr/local/qwt-5.2.2/lib\
     -lopengammamathfuncs -lqwt
 
@@ -73,8 +77,7 @@ INCLUDEPATH += ../maininterface \
 QT += opengl \
     sql \
     svg \
-    xml \
-    qwt
+    xml
 
 TARGET = opengammax
 
@@ -103,7 +106,6 @@ SOURCES += ../languages/languages.cpp \
     ../spectrumform/energyplotterwidget.cpp \
     ../models/spectrumformmodels.cpp \
     ../IO/spectrio.cpp \
-    ../IO/alsaStream.cpp \
     ../IO/smallStuff.cpp \
     ../IO/report.cpp \
     ../IO/ortec.cpp \
@@ -115,6 +117,8 @@ SOURCES += ../languages/languages.cpp \
     ../plotterwidget/qwtplotcurvewithuncert.cpp \
     ../plotterwidget/style.cpp \
     ../maininterface/signalSettings.cpp
+
+#    ../IO/alsaStream.cpp \
 
 HEADERS += ../languages/languages.h \
     ../maininterface/maininterface.h \
@@ -147,10 +151,12 @@ HEADERS += ../languages/languages.h \
     ../opengammamathfuncs/opengammamathfuncs_global.h \
     ../opengammamathfuncs/opengammamathfuncs.h \
     ../IO/spectrio.h \
-    ../IO/alsaStream.h \
     ../plotterwidget/qwtplotcurvewithuncert.h \
     ../plotterwidget/style.h \
     ../maininterface/signalSettings.h
+
+#    ../IO/alsaStream.h \
+
 FORMS += ../languages/languages.ui \
     ../maininterface/maininterface.ui \
     ../spectrumform/spectrumform.ui \
@@ -236,5 +242,8 @@ OTHER_FILES += ../license.txt \
     ../testfiles/co57.n42 \
     ../testfiles/co57.dat \
     ../testfiles/chnfile.n42
+
 #../readme.txt \
+
 RESOURCES += ./mdi.qrc
+

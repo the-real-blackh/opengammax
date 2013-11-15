@@ -21,12 +21,12 @@
 #ifndef MAININTERFACE_H
 #define MAININTERFACE_H
 
-#include <QtGui/QMainWindow>
+#include <QMainWindow>
 #ifdef Q_OS_LINUX
-#include <QtGui/QMdiSubWindow>
+#include <QMdiSubWindow>
 #endif
 #ifdef Q_OS_WIN32
-#include <QtGui/QMdiSubwindow>
+#include <QMdiSubwindow>
 #endif
 #include <QSignalMapper>
     //SpectrumIO *io = new SpectrumIO(this);

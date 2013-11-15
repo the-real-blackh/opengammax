@@ -25,7 +25,7 @@
 //
 
 EfficiencyPlotterWidget::EfficiencyPlotterWidget( QString &title, QWidget *parent )
-  : PlotterWidget( title, FALSE, 0.0, 0.01,QwtPlotCurve::Lines, parent )
+  : PlotterWidget( title, false, 0.0, 0.01,QwtPlotCurve::Lines, parent )
 {
     QCheckBox *ckbPlotEfficPoints = new QCheckBox("Points");
     QCheckBox *ckbPlotFit = new QCheckBox("Fit");

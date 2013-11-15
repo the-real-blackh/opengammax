@@ -1,0 +1,7 @@
+*~
+build-*
+build/ui_*.h
+build/Makefile.Debug
+build/Makefile.Release
+build/object_script.*
+build/opengammax

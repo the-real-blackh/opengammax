@@ -29,7 +29,9 @@
 #include <QDataStream>
 #include <QFile>
 
+#ifdef HAVE_ALSA
 #include "alsaStream.h"
+#endif
 #include "doblst.h"
 #include "counts.h"
 #include "sample.h"
@@ -53,19 +55,23 @@ public:
     bool readASC(const QString & fileName, Sample & sp);
     bool readN42(const QString & fileName, Sample & sp);
 
+#ifdef HAVE_ALSA
     bool openLiveSignal(QString & fileName, Sample & sam);
     bool readSpectrum(Sample & sam);
     bool readWaveforms(Sample & sam);
     bool startDataCapture(void);
     bool stopDataCapture(void);
+#endif
     bool reRead(Sample & samp);
     bool parseN42(const QString &buffer, QStringList & tokens);
     bool writeN42(const QString);
     bool encodeN42(Intlst *spect);
 
+#ifdef HAVE_ALSA
     bool openLiveSpectrum(const QString &fileName, Sample & sp );
     bool signalCapture(void);
     bool setSettings(bool invert, int threshold);
+#endif
     bool open(const QString & fileName);
 
     bool writeSpectrum( const QString &fileName, Sample & sample );
@@ -95,8 +101,10 @@ public:
     QString reportSet( QList<QList<QList<qreal> > > set );
     QString reportSetToFile( QList<QList<QList<qreal> > > set, QStringList names );
 
+#ifdef HAVE_ALSA
     // here are links to the lowest levels
     AlsaStream *alsa;
+#endif
 
 private:
     QString srcName;

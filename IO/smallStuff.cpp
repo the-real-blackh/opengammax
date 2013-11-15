@@ -51,7 +51,7 @@ bool SpectrumIO::readASC(const QString& fileName, Sample & sp)
     //ret = ( m_RT > 0 );
     //ret = ( m_LT > 0 );
     //ret = ( lines.count() > 3 );
-    return TRUE;
+    return true;
 }
 
 
@@ -60,7 +60,7 @@ bool SpectrumIO::readIEC1455(const QString& fileName, Sample & sample)
 {
     m_filename = fileName;
     QFile file(fileName);
-    if (!file.open(QFile::ReadOnly)) return FALSE;
+    if (!file.open(QFile::ReadOnly)) return false;
     inTst = new QTextStream(&file);
     QStringList list;
     QString line;
@@ -108,19 +108,19 @@ bool SpectrumIO::readIEC1455(const QString& fileName, Sample & sample)
         iL++;
     } while ( (!list[iL].isNull()) && (iL < nLm1) );
     sample.counts->updateCounts(ilist);
-    return TRUE;
+    return true;
 }
 
 
 bool SpectrumIO::readNuclideFile( const QString &fileName, QString &contents )
 {
-    bool loaded = FALSE;
+    bool loaded = false;
     if ( !fileName.isEmpty() ) {
         QFile file(fileName);
         if (file.open(QFile::ReadOnly | QFile::Text)) {
             QTextStream stream(&file);
             contents = stream.readAll();
-            loaded = TRUE;
+            loaded = true;
         }
     }
     return loaded;

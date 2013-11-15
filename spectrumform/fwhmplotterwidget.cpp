@@ -25,7 +25,7 @@
 //
 
 FwhmPlotterWidget::FwhmPlotterWidget( QString &title, QWidget *parent )
-  : PlotterWidget( title, FALSE, 0.0, 0.1, QwtPlotCurve::Lines, parent )
+  : PlotterWidget( title, false, 0.0, 0.1, QwtPlotCurve::Lines, parent )
 {
     hidePlotGrpbx();
     FunctionRange *fr1 = new FunctionRange();

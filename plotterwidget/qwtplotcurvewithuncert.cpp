@@ -39,7 +39,7 @@
 */
 
 void QwtPlotCurveWithUncert::drawCurve(QPainter *painter, int style,
-    const QwtScaleMap &xMap, const QwtScaleMap &yMap,
+    const QwtScaleMap &xMap, const QwtScaleMap &yMap, const QRectF& canvasRect,
     int from, int to ) const
 {
     style = STYLE;
@@ -53,19 +53,19 @@ void QwtPlotCurveWithUncert::drawCurve(QPainter *painter, int style,
                 from = 0;
                 to = dataSize() - 1;
             }
-            drawLines(painter, xMap, yMap, from, to);
+            drawLines(painter, xMap, yMap, canvasRect, from, to);
             break;
         case Sticks:
-            drawSticks(painter, xMap, yMap, from, to);
+            drawSticks(painter, xMap, yMap, canvasRect, from, to);
             break;
         case Steps:
-            drawSteps(painter, xMap, yMap, from, to);
+            drawSteps(painter, xMap, yMap, canvasRect, from, to);
             break;
         case Dots:
-            drawDots(painter, xMap, yMap, from, to);
+            drawDots(painter, xMap, yMap, canvasRect, from, to);
             break;
         //case ErrorBars:
-        //    drawErrorBars(painter, xMap, yMap, from, to);
+        //    drawErrorBars(painter, xMap, yMap, canvasRect, from, to);
         //    break;
         //
         case NoCurve:
@@ -130,7 +130,7 @@ void QwtPlotCurveWithUncert::drawAnErrorBarDisabled(QPainter *painter,
 void QwtPlotCurveWithUncert::setDataAllEnabled(const double *xData, const double *yData,
   const double *syData, int nBars )
 {
-    QwtPlotCurve::setData( xData, yData, nBars );
+    QwtPlotCurve::setSamples( xData, yData, nBars );
     m_sy.resize( nBars );
     m_isPointEnabled.resize( nBars );
     for ( int i=0; i < nBars; i++ ) {
@@ -161,7 +161,7 @@ void QwtPlotCurveWithUncert::showScatData( QwtPlot *pl, QColor c2, QColor c3, QC
     // setRenderHint(QwtPlotItem::RenderAntialiased);
     //setStyle( QwtPlotCurve::CurveStyle( QwtPlotCurveWithUncert::ErrorBars ));
     setStyle( QwtPlotCurve::CurveStyle( QwtPlotCurveWithUncert::Dots ));
-    setSymbol( QwtSymbol( QwtSymbol::Diamond, QColor(c2), QColor(c3), QSize(dSize, dSize)));
+    setSymbol( new QwtSymbol( QwtSymbol::Diamond, QColor(c2), QColor(c3), QSize(dSize, dSize)));
     barColor = c4;
     serifColor = c5;
     attach( pl  );

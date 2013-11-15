@@ -33,13 +33,13 @@ bool SpectrumIO::readCHN(const QString & fileName, Sample & sp)
 {
     //m_filename = fileName
     QFile file(fileName);
-    if (!file.open(QFile::ReadOnly)) return FALSE;
+    if (!file.open(QFile::ReadOnly)) return false;
     inDst = new QDataStream(&file);
     inDst->setByteOrder( QDataStream::LittleEndian );
-    if (!getHeaderCHN(sp)) return FALSE;
-    if (!getCountsCHN(sp)) return FALSE;
-    if (!getFooterCHN(sp)) return FALSE;
-    return TRUE;
+    if (!getHeaderCHN(sp)) return false;
+    if (!getCountsCHN(sp)) return false;
+    if (!getFooterCHN(sp)) return false;
+    return true;
 }
 
 

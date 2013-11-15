@@ -1,5 +1,5 @@
 del /s /q opengammax || goto :error
-rmdir /s /q opengammax || goto :error
+rmdir /s /q opengammax
 mkdir opengammax || goto :error
 copy "C:\qt\qt5.1.1\5.1.1\mingw48_32\bin\libstdc++-6.dll" opengammax || goto :error
 copy "C:\qt\qt5.1.1\5.1.1\mingw48_32\bin\libgcc_s_dw2-1.dll" opengammax || goto :error

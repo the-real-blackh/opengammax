@@ -36,8 +36,7 @@ TEMPLATE = lib
 DEFINES += OPENGAMMAMATHFUNCS_LIBRARY
 SOURCES += opengammamathfuncs.cpp
 HEADERS += opengammamathfuncs.h \
-    opengammamathfuncs_global.h \
-    doblst.h
+    opengammamathfuncs_global.h
 win32:win32-g++ { 
     LIBS += -L../../gsl-1.16/.libs -L../../gsl-1.16/cblas/.libs
     INCLUDEPATH += ../../gsl-1.16

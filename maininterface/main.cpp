@@ -22,11 +22,10 @@
 #include <QTranslator>
 #include <QLibraryInfo>
 #include <QSettings>
-#include <QDir>
-#include <QImageReader>
 
 #include "maininterface.h"
 
+#if 0
 #include <windows.h>
 int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR args, int n)
 {
@@ -34,14 +33,11 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR args, int n)
     char* argv[2] = {"hello", NULL};
     return main(1, argv);
 }
+#endif
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    Q_INIT_RESOURCE(mdi);
-
-    qDebug() << QDir(":/models/images").entryList() << endl;
-    qDebug() << QImageReader::supportedImageFormats() << endl;
 
     QSettings settings("OpenGamma", "Settings");
     QString app_lang = QString( settings.value("lang", "en").toString() );

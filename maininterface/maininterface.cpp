@@ -25,6 +25,7 @@
 #include <QMdiArea>
 #include <QMessageBox>
 #include <QSettings>
+#include <QTimer>
 #include "maininterface.h"
 #include "languages.h"
 #include "directories.h"

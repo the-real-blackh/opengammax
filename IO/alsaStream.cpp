@@ -26,7 +26,6 @@
 #include <qpen.h>
 #include <qwt_plot_layout.h>
 #include <qwt_legend.h>
-#include <qwt_legend_item.h>
 #include <qwt_plot_grid.h>
 
 using namespace std;

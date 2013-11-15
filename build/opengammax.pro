@@ -32,16 +32,10 @@ win32 {
   CONFIG += console
 }
 unix {
-    INCLUDEPATH += /usr/include/qt4/qt \
-         /usr/local/qwt-5.2.2/include
-    LIBS += -L/usr/lib -L/usr/local/qwt-5.2.2/lib \
-        -lqwt -lasound
+    INCLUDEPATH += /usr/include/qt4/qt /usr/local/qwt-6.1.0/include
+    LIBS += -L/usr/local/qwt-6.1.0/lib -lqwt -lasound
+    DEFINES += HAVE_ALSA
 }
-#unix {
-#    INCLUDEPATH += /usr/include/qwt5
-#    LIBS += -L/usr/lib \
-#        -lqwt
-#}
 
 
 # Qwt config end
@@ -118,7 +112,9 @@ SOURCES += ../languages/languages.cpp \
     ../plotterwidget/style.cpp \
     ../maininterface/signalSettings.cpp
 
-#    ../IO/alsaStream.cpp \
+unix {
+    SOURCES += ../IO/alsaStream.cpp
+}
 
 HEADERS += ../languages/languages.h \
     ../maininterface/maininterface.h \
@@ -155,7 +151,9 @@ HEADERS += ../languages/languages.h \
     ../plotterwidget/style.h \
     ../maininterface/signalSettings.h
 
-#    ../IO/alsaStream.h \
+unix {
+    HEADERS += ../IO/alsaStream.h
+}
 
 FORMS += ../languages/languages.ui \
     ../maininterface/maininterface.ui \

@@ -29,7 +29,7 @@ win32 {
   LIBS =          -L$${QWT_LOCATION}/lib -lqwt
   
   #INCLUDEPATH += c:\qt\qt5.1.1\5.1.1\mingw48_32\include
-  CONFIG += console
+  #CONFIG += console
 }
 unix {
     INCLUDEPATH += /usr/include/qt4/qt /usr/local/qwt-6.1.0/include

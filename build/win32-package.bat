@@ -30,8 +30,8 @@ copy qt-win32.conf opengammax\qt.conf || goto :error
 mkdir opengammax\plugins
 mkdir opengammax\plugins\platforms
 copy c:\qt\qt5.1.1\5.1.1\mingw48_32\plugins\platforms\qwindows.dll opengammax\plugins\platforms || goto :error
-mkdir opengammax\plugins\imageformats
-copy c:\qt\qt5.1.1\5.1.1\mingw48_32\plugins\imageformats\*.dll opengammax\plugins\imageformats || goto :error
+rem mkdir opengammax\plugins\imageformats
+rem copy c:\qt\qt5.1.1\5.1.1\mingw48_32\plugins\imageformats\*.dll opengammax\plugins\imageformats || goto :error
 goto :EOF
 
 :error

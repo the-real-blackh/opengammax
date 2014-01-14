@@ -34,12 +34,14 @@ SpectrumForm::SpectrumForm( const QString & fna,
                            const QString & calNucPa,
                            Sample & samp,
                            SpectrumIO & io,
+                           std::function<void()> onClose,
                            QwtPlotCurve::CurveStyle style)
+    : onClose(onClose)
 {
     ui.setupUi(this);
     sample = &samp;
     Counts *cts = samp.counts;
-    cts->setParent( this );
+    // ### cts->setParent( this );
     //
     m_isValid = false;
 
@@ -210,6 +212,8 @@ SpectrumForm::~SpectrumForm()
 {
     qDeleteAll( *pklist );
     pklist->clear();
+    printf("~SpectrumForm\n");
+    onClose();
 }
 
 void SpectrumForm::on_cbxSelectedAnalysisLib_activated()

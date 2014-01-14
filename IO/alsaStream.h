@@ -79,7 +79,7 @@ public:
     AlsaStream ( QObject *parent = 0 )
         : QObject( parent ) {}
 
-    bool open(const QString & fileName, Sample  & samp);
+    bool open(const char* deviceName, Sample  & samp);
     bool close(void);
     bool clear(void);
     int nchans(void);

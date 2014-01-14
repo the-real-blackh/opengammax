@@ -45,7 +45,7 @@ SpectrumIO::SpectrumIO(QObject *parent)
 // counts are stored in the SpectrumIO object by methods below
 bool SpectrumIO::readSpectrumFile( const QString& fileName, Sample& sp )
 {
-    bool rslt;
+    bool rslt = false;
 
     QFileInfo fi( fileName );
     QString ext = fi.suffix().toUpper();  // ext == "CHN", "IEC", "OGAMMSP", "ASC" etc
@@ -68,7 +68,7 @@ bool SpectrumIO::readSpectrumFile( const QString& fileName, Sample& sp )
 #ifdef HAVE_ALSA
 bool SpectrumIO::setSettings(bool invert, int threshold){
     if(liveSource == ALSA){
-         AlsaStream *alsa = new AlsaStream();
+         AlsaStream *alsa = new AlsaStream();  // to do: leak
          return( alsa->setSettings(invert, threshold));
      }else{
          return FALSE;
@@ -78,30 +78,22 @@ bool SpectrumIO::setSettings(bool invert, int threshold){
 
 #ifdef HAVE_ALSA
 // counts are read into the SpectrumIO object by methods below
-bool SpectrumIO::openLiveSignal( QString & fileName, Sample & samp )
+bool SpectrumIO::openLiveSignal( const char* deviceName, Sample & samp )
 {
     bool rtn;
-    if(fileName.contains("/dev/snd/"))
-    {   // alsa sound system
-        AlsaStream *alsa = new AlsaStream();
-        if(!(alsa->open(fileName, samp))){
-            return false;
-        }
-        liveSource = ALSA;
-        return TRUE;
+    AlsaStream *alsa = new AlsaStream();  // to do: leak
+    if(!(alsa->open(deviceName, samp))){
+        return false;
     }
-    else if(fileName.contains("/dev/dsp*"))
-    {
-        return FALSE;
-    }
-    return FALSE;
+    liveSource = ALSA;
+    return true;
 }
 #endif
 
 #ifdef HAVE_ALSA
 bool SpectrumIO::readSpectrum(Sample & samp){
    if(liveSource == ALSA){
-        AlsaStream *alsa = new AlsaStream();
+        AlsaStream *alsa = new AlsaStream();  // to do: leak
         alsa->readSpectrum( samp);
         return TRUE;
     }else{
@@ -114,7 +106,7 @@ bool SpectrumIO::readSpectrum(Sample & samp){
 // selection of waveform or spectrum is in the lowest level code
 bool SpectrumIO::readWaveforms(Sample & samp){
      if(liveSource == ALSA){
-        AlsaStream *alsa = new AlsaStream();
+        AlsaStream *alsa = new AlsaStream();  // to do: leak
         alsa->readWaveforms( samp);
         return TRUE;
      }else{
@@ -127,7 +119,7 @@ bool SpectrumIO::readWaveforms(Sample & samp){
 bool SpectrumIO::reRead(Sample & samp)          // used to update display
 {
      if(liveSource == ALSA){
-        AlsaStream *alsa = new AlsaStream();
+        AlsaStream *alsa = new AlsaStream();  // to do: leak
         alsa->reRead( samp);
         return TRUE;
      }else{
@@ -140,7 +132,7 @@ bool SpectrumIO::reRead(Sample & samp)          // used to update display
 bool SpectrumIO::startDataCapture()
 {
      if(liveSource == ALSA){
-        AlsaStream *alsa = new AlsaStream();
+        AlsaStream *alsa = new AlsaStream();  // to do: leak
         alsa->startCapture();
         return TRUE;
      }else{
@@ -153,8 +145,22 @@ bool SpectrumIO::startDataCapture()
 bool SpectrumIO::stopDataCapture()
 {
      if(liveSource == ALSA){
-        AlsaStream *alsa = new AlsaStream();
+        AlsaStream *alsa = new AlsaStream();  // to do: leak
         alsa->stopCapture();
+         return TRUE;
+     }else{
+         return FALSE;
+     }
+}
+#endif
+
+#ifdef HAVE_ALSA
+bool SpectrumIO::closeDataCapture()
+{
+     if(liveSource == ALSA){
+        AlsaStream *alsa = new AlsaStream();  // to do: leak
+        alsa->close();
+        liveSource = UNDEFINED;
          return TRUE;
      }else{
          return FALSE;
@@ -166,7 +172,7 @@ bool SpectrumIO::stopDataCapture()
 bool SpectrumIO::clear()
 {
      if(liveSource == ALSA){
-        AlsaStream *alsa = new AlsaStream();
+        AlsaStream *alsa = new AlsaStream();  // to do: leak
         alsa->clear();
          return TRUE;
      }else{
@@ -299,7 +305,7 @@ QList<QList<qreal> > SpectrumIO::getOpenGammaBatchResults( const QString &fileNa
 
 qreal SpectrumIO::quint32tofloat( quint32 n )
 {
-    quint32 n1     = n / 8388608; // it´s 2^23
+    quint32 n1     = n / 8388608; // itï¿½s 2^23
     qreal signif   = 1.0 + (n % 8388608) * pow(2.0, -23.0);
     int signal;
     if ( n1 / 256 == 1) signal = -1; else signal = 1;

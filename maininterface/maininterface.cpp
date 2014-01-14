@@ -88,9 +88,10 @@ void MainInterface::closeEvent(QCloseEvent *event)
 }
 
 
-SpectrumForm *MainInterface::createMdiChild( const QString & fName, Sample & samp, SpectrumIO & io )
+SpectrumForm *MainInterface::createMdiChild( const QString & fName, Sample & samp, SpectrumIO & io,
+        std::function<void()> onClose )
 {
-    child = new SpectrumForm( fName, analysisNuclibPath, calibNuclibPath, sam, io );
+    child = new SpectrumForm( fName, analysisNuclibPath, calibNuclibPath, sam, io, onClose );
     mdiArea->addSubWindow(child);
     return child;
 }
@@ -109,7 +110,7 @@ void MainInterface::on_actionReadSpectrumFile_triggered()
         return;
     }
     sam.fileName = fileName;
-    child = createMdiChild( fileName, sam, io );
+    child = createMdiChild( fileName, sam, io, [] () {} );
     QApplication::setOverrideCursor( Qt::WaitCursor );  
     statusBar()->showMessage(tr("File loaded"), 5000);
     child->showMaximized();
@@ -122,26 +123,37 @@ void MainInterface::on_actionReadSpectrumFile_triggered()
 
 
 void MainInterface::on_actionOpenLiveSignal_triggered(){
-    bool rtn;
-    QString path("/dev/snd/");
-    QString fileName = QFileDialog::getOpenFileName( this,
-         tr("Open a live data stream."), path, "(hwC*D*)");
+    if (timerDisplay == NULL) {
+        bool rtn;
+        /*
+        QString path("/dev/snd/");
+        QString fileName = QFileDialog::getOpenFileName( this,
+             tr("Open a live data stream."), path, "(hwC*D*)");
+             */
 #ifdef HAVE_ALSA
-    rtn = io.openLiveSignal( fileName, sam);
-    if(rtn = false){
-        statusBar()->showMessage(tr("Unable to open live signal"), 0);
-        return;
-    }
+        rtn = io.openLiveSignal( "default", sam);
+        if(rtn == false){
+            statusBar()->showMessage(tr("Unable to open live signal"), 0);
+            return;
+        }
 #endif
-    sam.fileName = fileName;
-    sam.acqDateTime.currentDateTime();
-    child = createMdiChild( fileName, sam, io );
-    reRead();
-    statusBar()->showMessage(tr("Live signal established"), 10000);
-    timerDisplay = new QTimer(this);
-    connect(timerDisplay, SIGNAL(timeout()), this, SLOT(reRead()));
-    timerDisplay->start(TIMER_PERIOD);   // immediately start rereading data
-    return;
+        //sam.fileName = fileName;
+        sam.fileName = "";  // ###
+        sam.acqDateTime.currentDateTime();
+        timerDisplay = new QTimer(this);
+        child = createMdiChild( sam.fileName, sam, io, [this] () {
+                if (timerDisplay != NULL) {
+                    timerDisplay->stop();
+                    delete timerDisplay;
+                    timerDisplay = NULL;
+                    io.closeDataCapture();
+                }
+            });
+        reRead();
+        statusBar()->showMessage(tr("Live signal established"), 10000);
+        connect(timerDisplay, SIGNAL(timeout()), this, SLOT(reRead()));
+        timerDisplay->start(TIMER_PERIOD);   // immediately start rereading data
+    }
 }
 
 void MainInterface::on_actionReadSpectrum_triggered()
@@ -161,7 +173,7 @@ void MainInterface::on_actionReadWaveforms_triggered()
 
 void MainInterface::reRead()  // used for display update only
 {
-    /*
+#ifdef HAVE_ALSA
     bool rtn;
 
     rtn = io.reRead(sam);
@@ -174,7 +186,7 @@ void MainInterface::reRead()  // used for display update only
     //statusBar()->showMessage(tr("Live Data Updated"), 2000);
     child->showMaximized();
     QApplication::restoreOverrideCursor();
-    */
+#endif
 }
 
 

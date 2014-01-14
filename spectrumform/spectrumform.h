@@ -46,6 +46,7 @@
 #include "nuclide.h"
 #include "reports.h"
 #include "sample.h"
+#include <functional>
 
 class SpectrumForm : public QDialog
 {
@@ -57,7 +58,8 @@ public:
         const QString & calNucPa,
         Sample & samp,
         SpectrumIO & io,
-        QwtPlotCurve::CurveStyle style = (QwtPlotCurve::Lines));
+        std::function<void()> onClose,
+        QwtPlotCurve::CurveStyle style = QwtPlotCurve::Lines);
     ~SpectrumForm();
     // void closeEvent(QCloseEvent *event);
     Sample *sample;
@@ -145,6 +147,7 @@ public:
     int interpolationMethod() { return ui.cbxInterpolationMethod->currentIndex(); }  
     int fitStrategy() { return ui.cbxFitStrategy->currentIndex(); }
     SpectrumIO *io;
+    std::function<void()> onClose;
 
 private slots:
 // Button Box clicked: to be impl'd

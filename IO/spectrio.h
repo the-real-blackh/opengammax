@@ -56,11 +56,12 @@ public:
     bool readN42(const QString & fileName, Sample & sp);
 
 #ifdef HAVE_ALSA
-    bool openLiveSignal(QString & fileName, Sample & sam);
+    bool openLiveSignal(const char* deviceName, Sample & sam);
     bool readSpectrum(Sample & sam);
     bool readWaveforms(Sample & sam);
     bool startDataCapture(void);
     bool stopDataCapture(void);
+    bool closeDataCapture(void);
 #endif
     bool reRead(Sample & samp);
     bool parseN42(const QString &buffer, QStringList & tokens);

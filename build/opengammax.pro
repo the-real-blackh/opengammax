@@ -36,6 +36,7 @@ unix {
     LIBS += -L/usr/local/qwt-6.1.0/lib -lqwt -lasound
     DEFINES += HAVE_ALSA
 }
+QMAKE_CXXFLAGS += -std=c++0x
 
 
 # Qwt config end

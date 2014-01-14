@@ -181,12 +181,11 @@ bool AlsaStream::setScheduler(void)
 }
 
 /* turn the sound device on */
-bool AlsaStream::open(const QString & fileName, Sample & sam)
+bool AlsaStream::open(const char* deviceName, Sample & sam)
 {
     int err;
     struct pollfd *pfd;
     FILE tmpfd;
-    char buf[80];
 
     tmpfd._fileno = 0;
     spectrumTbl.clear();
@@ -200,11 +199,7 @@ bool AlsaStream::open(const QString & fileName, Sample & sam)
     // check to see if already open  
     //if(fd != tmpfd)
     //    return fd;
-    QString fn = fileName;
-    QTextStream *ts = new QTextStream(&fn, QIODevice::ReadOnly);
-    *ts >> HWchan >> HWdev;
-    sprintf(buf,"hw:%d,%d", HWdev, HWchan);
-    err = snd_pcm_open(&pcm, buf, (snd_pcm_stream_t)SND_PCM_STREAM_CAPTURE, SND_PCM_ASYNC);
+    err = snd_pcm_open(&pcm, deviceName, (snd_pcm_stream_t)SND_PCM_STREAM_CAPTURE, SND_PCM_ASYNC);
     if (err < 0)
     {
         cout << snd_strerror(err);

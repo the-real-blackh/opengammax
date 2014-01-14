@@ -83,7 +83,8 @@ private:
     void pauseLS();
     void reStartLS();
 
-    SpectrumForm *createMdiChild( const QString & fileName, Sample & samp, SpectrumIO & io );
+    SpectrumForm *createMdiChild( const QString & fileName, Sample & samp, SpectrumIO & io,
+        std::function<void()> onClose );
     void openSignalSource();
     Ui::MainInterfaceClass *ui;
     QMdiArea *mdiArea;
